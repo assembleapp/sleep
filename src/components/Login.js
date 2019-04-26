@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { observer } from "mobx-react"
 import field from "../util/field"
 import Button from "../primitives/Button"
-import InternalLink from "../primitives/InternalLink"
 
 const Login = observer(({assembly}) => (
   <Layout>

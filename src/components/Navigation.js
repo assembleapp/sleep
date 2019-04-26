@@ -6,10 +6,6 @@ import InternalLink from "../primitives/InternalLink"
 
 import Icon from "@mdi/react"
 import {
-  mdiWhatsapp,
-  mdiFolderClockOutline,
-  mdiInformationOutline,
-  mdiPencilBoxOutline,
   mdiHome,
 } from "@mdi/js"
 

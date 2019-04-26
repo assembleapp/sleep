@@ -1,33 +1,23 @@
 import React from "react"
 import styled from "styled-components"
-
-import { observable, computed, autorun, action } from "mobx"
-import { observer, Observer } from "mobx-react"
 import { Image } from "reakit"
-import { white, beige, lightgrey, darkgrey } from "./colors"
-import logo from "./logo.png"
-import ErrorBoundary from "./primitives/ErrorBoundary"
+import { observable, computed, action } from "mobx"
+import { observer, Observer } from "mobx-react"
 
-// Crypto & authentication
-// import KJUR from "jsrsasign"
-
-// Utility
 import Account from "./Account"
-import { DateTime } from "luxon"
+import Network from "./Network"
+import logo from "./logo.png"
+import { white, beige, lightgrey, darkgrey } from "./colors"
 
-// Pages
+import ErrorBoundary from "./primitives/ErrorBoundary"
+import InternalLink from "./primitives/InternalLink"
+
 import Flash from "./components/Flash"
 import Home from "./components/Home"
 import Menu from "./components/Menu"
 import Navigation from "./components/Navigation"
-
-import InternalLink from "./primitives/InternalLink"
-import WithCredentials from "./primitives/WithCredentials"
-
-// Language
 import english from "./languages/en"
 
-import Network from "./Network"
 let network = new Network(process.env.REACT_APP_URL_API)
 
 @observer

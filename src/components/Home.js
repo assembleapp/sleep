@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components"
 import { observer } from "mobx-react"
-
-import { white } from "../colors"
 import Button from "../primitives/Button"
 
 const Home = observer(({ assembly }) => (
