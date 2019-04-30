@@ -18,14 +18,27 @@ import Menu from "./components/Menu"
 import Navigation from "./components/Navigation"
 import english from "./languages/en"
 
-let network = new Network(process.env.REACT_APP_URL_API)
-
 @observer
 class Assembly extends React.Component {
+  @observable uuid = null
   @observable dictionary = english
   @observable alerts = []
   @observable currentPage = null
   @observable menu = {}
+
+  // We do not want the network to change throughout the application's lifecycle
+  // so we do not make it observable.
+  network = null
+
+  constructor(props) {
+    super(props)
+
+    this.network = new Network(process.env.REACT_APP_URL_API)
+    this.route()
+
+    if(props.afterCreation)
+      props.afterCreation(this)
+  }
 
   // Given...
   // * the remembered route
@@ -34,14 +47,6 @@ class Assembly extends React.Component {
   // ...determine what to display.
   @action route() {
     this.currentPage = Home
-  }
-
-  constructor(props) {
-    super(props)
-    this.route()
-
-    if(props.afterCreation)
-      props.afterCreation(this)
   }
 
   // Alerts
@@ -97,7 +102,7 @@ class Assembly extends React.Component {
   }
 
   logout() {
-    network.clearWatches()
+    this.network.clearWatches()
     this.currentPage = Home
   }
 
