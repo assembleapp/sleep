@@ -9,8 +9,8 @@ class Component extends React.Component {
   constructor(props) {
     super(props)
 
-    props.assembly.network.watch`
-      JSON.parse(Component.find_or_create_by(id: "${props.uuid}").style)
+    this.props.assembly.network.watch`
+      JSON.parse(Component.find_or_create_by(id: "${this.props.uuid}").style)
     `(response => {
       response
         .json()
@@ -18,11 +18,21 @@ class Component extends React.Component {
         this.styles = style
         })
     })
+
+    reaction(
+      () => JSON.stringify(this.styles),
+      (styles) => this.props.assembly.network.run`
+        Component.find_or_create_by(id: "${this.props.uuid}").update(style: '${styles}')
+      `
+    )
   }
 
   render() {
     return (
-      <div style={JSON.parse(JSON.stringify(this.styles))}>
+      <div
+        style={JSON.parse(JSON.stringify(this.styles))}
+        onClick={() => this.props.assembly.activeComponent = this}
+      >
         {this.props.children}
       </div>
     )

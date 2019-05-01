@@ -18,6 +18,8 @@ import Menu from "./components/Menu"
 import Navigation from "./components/Navigation"
 import english from "./languages/en"
 
+import StyleForm from "./harness/StyleForm"
+
 @observer
 class Assembly extends React.Component {
   @observable uuid = null
@@ -25,6 +27,7 @@ class Assembly extends React.Component {
   @observable alerts = []
   @observable currentPage = null
   @observable menu = {}
+  @observable activeComponent = null
 
   // We do not want the network to change throughout the application's lifecycle
   // so we do not make it observable.
@@ -132,15 +135,35 @@ class Assembly extends React.Component {
       <Space />
 
       <Content>
-        <Observer>
-          {() =>
-            this.currentPage
-            ? <ErrorBoundary assembly={this}>
-                { React.createElement(this.currentPage, { assembly: this }) }
-              </ErrorBoundary>
-            : null
-          }
-        </Observer>
+        <AppContainer>
+          <Observer>
+            {() =>
+              this.currentPage
+              ? <ErrorBoundary assembly={this}>
+                  { React.createElement(this.currentPage, { assembly: this }) }
+                </ErrorBoundary>
+              : null
+            }
+          </Observer>
+
+          <StyleBoundary>
+            <Observer>{() =>
+              this.activeComponent
+              ? <StyleForm
+                  styles={this.activeComponent.styles}
+                  onChange={styles =>
+                      this.activeComponent.styles = {
+                        ...this.activeComponent.styles,
+                        ...styles
+                      }
+                  }
+                />
+              : <div>
+                  Select an element to get started!
+                </div>
+            }</Observer>
+          </StyleBoundary>
+        </AppContainer>
       </Content>
 
       <Space />
@@ -216,6 +239,19 @@ const Drawer = styled.div`
 const Content = styled.div`
   padding: 0 1rem;
   background: ${beige};
+`
+
+const AppContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto 25rem;
+`
+
+const StyleBoundary = styled.div`
+  font-size: 12px;
+  border-left: 1rem solid grey;
+  padding: 1rem;
+  height: 100vh;
+  overflow-y: scroll;
 `
 
 export default Assembly
