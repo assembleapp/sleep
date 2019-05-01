@@ -9,7 +9,7 @@ import { grey, darkgrey, white, red } from "../colors"
 import Selection from "../primitives/Selection"
 import field from "../util/field"
 
-const Menu = observer(({ assembly }) => (
+const Menu = observer(({ assembly, children }) => (
   <Sidebar.Container>
     {sidebar => (
       <Block>
@@ -20,55 +20,18 @@ const Menu = observer(({ assembly }) => (
         <TransparentBackdrop as={[Portal, Sidebar.Hide]} {...sidebar} />
 
         <Side align="right" slide as={Portal} {...sidebar}>
-          <Observer>{() =>
-          <Layout>
-            <Toggle {...sidebar} >
-              <Icon path={mdiClose} size={1} />
-            </Toggle>
-
-            <Question>
-              {field(assembly, "menu.name").label}
-              {field(assembly, "menu.name").field}
-            </Question>
-
-            <Question>
-              {field(assembly, "menu.phone_number", "tel").label}
-              {field(assembly, "menu.phone_number", "tel").field}
-            </Question>
-
-            <Question>
-              <Icon path={mdiWeb} size={1} />
-
-              <Selection
-                update={() => assembly.language}
-                options={["Español", "English"]}
-                onChange={(selection) => assembly.language = selection}
-              />
-            </Question>
-
-            <Question>
-              {field(assembly, "menu.treatment_start", "date").label}
-              {field(assembly, "menu.treatment_start", "date").field}
-            </Question>
-
-            <Button
-              onClick={() => assembly.participant_account.update(assembly.menu)}
-            >
-              Save
-            </Button>
-
-            <LogoutButton onClick={() => assembly.logout()}>
-              Log out
-            </LogoutButton>
-          </Layout>
-          }</Observer>
+          {children}
         </Side>
       </Block>
     )}
   </Sidebar.Container>
 ))
 
-const Layout = styled(Box)`
+const Side = styled(Sidebar)`
+  border: 1px solid ${darkgrey};
+  padding: 1rem;
+  background-color: ${white};
+
   bottom: 0;
   top: 0;
   right: 0;
@@ -81,12 +44,6 @@ const Layout = styled(Box)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-`
-
-const Side = styled(Sidebar)`
-  border: 1px solid ${darkgrey};
-  padding: 1rem;
-  background-color: ${white};
 `
 
 const Toggle = styled(Sidebar.Toggle)`

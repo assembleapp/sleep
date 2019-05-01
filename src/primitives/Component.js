@@ -4,7 +4,12 @@ import { autorun, reaction, observable } from "mobx"
 
 @observer
 class Component extends React.Component {
-  @observable styles = {}
+  @observable styles = {
+    backgroundColor: "#4a90e2",
+    color: "#ffffff",
+    height: "2rem",
+    width: "2rem",
+  }
 
   constructor(props) {
     super(props)

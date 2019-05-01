@@ -6,7 +6,10 @@ import Component from "../primitives/Component"
 
 const Home = observer(({ assembly }) => (
   <Layout>
-    <Component uuid="805d389b-16e2-41c9-a40a-c2d895006b67" assembly={assembly} >
+    <Component
+      uuid="11ec9f80-ee6d-44a9-a3c8-69e4bb8baabf"
+      assembly={assembly}
+    >
       Hello!
     </Component>
   </Layout>

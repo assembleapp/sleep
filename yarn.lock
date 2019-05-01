@@ -18,8 +18,9 @@
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
 "@mdi/js@^3.0.39":
-  version "3.0.39"
-  resolved "https://registry.yarnpkg.com/@mdi/js/-/js-3.0.39.tgz#ef12d603d6ee7c34fad6d08c37dfc0376944b269"
+  version "3.6.95"
+  resolved "https://registry.yarnpkg.com/@mdi/js/-/js-3.6.95.tgz#0a1e599680d241a2e77635c601fba25a44a635a0"
+  integrity sha512-9ICUom79Gw28Q8Cp6CX0VBd/Zy7NtIZrNolqIoYoKeuQmROhJ+1U54cxTuaGYHx+z62FIdx98IL3buMFAKwA/A==
 
 "@mdi/react@^1.1.0":
   version "1.1.0"

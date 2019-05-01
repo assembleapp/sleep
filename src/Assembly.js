@@ -26,7 +26,6 @@ class Assembly extends React.Component {
   @observable dictionary = english
   @observable alerts = []
   @observable currentPage = null
-  @observable menu = {}
   @observable activeComponent = null
 
   // We do not want the network to change throughout the application's lifecycle
@@ -117,7 +116,23 @@ class Assembly extends React.Component {
           <Title>{this.translate("titles.default")}</Title>
         </InternalLink>
 
-        <Menu assembly={this} />
+        <Menu assembly={this}>
+          <Observer>{() =>
+            this.activeComponent
+            ? <StyleForm
+                component={this.activeComponent}
+                onChange={styles =>
+                    this.activeComponent.styles = {
+                      ...this.activeComponent.styles,
+                      ...styles
+                    }
+                }
+              />
+            : <div>
+                Select an element to get started!
+              </div>
+          }</Observer>
+        </Menu>
 
         <Drawer>
           <Observer>
@@ -135,35 +150,15 @@ class Assembly extends React.Component {
       <Space />
 
       <Content>
-        <AppContainer>
-          <Observer>
-            {() =>
-              this.currentPage
-              ? <ErrorBoundary assembly={this}>
-                  { React.createElement(this.currentPage, { assembly: this }) }
-                </ErrorBoundary>
-              : null
-            }
-          </Observer>
-
-          <StyleBoundary>
-            <Observer>{() =>
-              this.activeComponent
-              ? <StyleForm
-                  styles={this.activeComponent.styles}
-                  onChange={styles =>
-                      this.activeComponent.styles = {
-                        ...this.activeComponent.styles,
-                        ...styles
-                      }
-                  }
-                />
-              : <div>
-                  Select an element to get started!
-                </div>
-            }</Observer>
-          </StyleBoundary>
-        </AppContainer>
+        <Observer>
+          {() =>
+            this.currentPage
+            ? <ErrorBoundary assembly={this}>
+                { React.createElement(this.currentPage, { assembly: this }) }
+              </ErrorBoundary>
+            : null
+          }
+        </Observer>
       </Content>
 
       <Space />
@@ -239,19 +234,7 @@ const Drawer = styled.div`
 const Content = styled.div`
   padding: 0 1rem;
   background: ${beige};
-`
-
-const AppContainer = styled.div`
-  display: grid;
-  grid-template-columns: auto 25rem;
-`
-
-const StyleBoundary = styled.div`
-  font-size: 12px;
-  border-left: 1rem solid grey;
-  padding: 1rem;
-  height: 100vh;
-  overflow-y: scroll;
+  width: 100vw;
 `
 
 export default Assembly

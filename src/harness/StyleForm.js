@@ -1,12 +1,14 @@
 import React from "react"
-import { observer } from "mobx-react"
+import { observer, Observer } from "mobx-react"
 import ColorPicker from "./ColorPicker"
 
 import {
-  mdiFormatAlignLeft,
+  mdiBorderStyle,
+  mdiCheckboxIntermediate,
   mdiFormatAlignCenter,
-  mdiFormatAlignRight,
   mdiFormatAlignJustify,
+  mdiFormatAlignLeft,
+  mdiFormatAlignRight,
   mdiFormatColorFill,
   mdiFormatColorText,
 } from "@mdi/js"
@@ -49,14 +51,20 @@ class StyleForm extends React.Component {
 
           <ColorPicker
             icon={mdiFormatColorFill}
-            color={this.props.styles.backgroundColor}
+            color={this.props.component.styles.backgroundColor}
             onChange={color => this.props.onChange({ backgroundColor: color.hex })}
           />
 
           <ColorPicker
             icon={mdiFormatColorText}
-            color={this.props.styles.color}
+            color={this.props.component.styles.color}
             onChange={color => this.props.onChange({ color: color.hex })}
+          />
+
+          <ColorPicker
+            icon={mdiBorderStyle}
+            color={(this.props.component.styles.border || "1px solid #000000").split(" ")[2]}
+            onChange={color => this.props.onChange({ border: `1px solid ${color.hex}` })}
           />
         </div>
 
@@ -67,7 +75,7 @@ class StyleForm extends React.Component {
             <label># Columns</label>
             <input
               type="number"
-              value={this.props.gridColumnCount || 1}
+              value={this.props.component.styles.gridColumnCount || 1}
               onChange={e => this.props.onChange({
                 display: "grid",
                 gridColumnCount: e.target.value,
@@ -80,12 +88,40 @@ class StyleForm extends React.Component {
             <label># Rows</label>
             <input
               type="number"
-              value={this.props.gridRowCount || 1}
+              value={this.props.component.styles.gridRowCount || 1}
               onChange={e => this.props.onChange({
                 display: "grid",
                 gridRowCount: e.target.value,
                 gridTemplateRows: `repeat(${e.target.value}, 1fr)`,
               })}
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3>Size and Spacing</h3>
+
+          <div>
+            <label>Width</label>
+            <input
+              value={this.props.component.styles.width || "auto"}
+              onChange={e => this.props.onChange({ width: e.target.value })}
+            />
+          </div>
+
+          <div>
+            <label>Height</label>
+            <input
+              value={this.props.component.styles.height || "auto"}
+              onChange={e => this.props.onChange({ height: e.target.value })}
+            />
+          </div>
+
+          <div>
+            <label>Padding <Icon size={1} path={mdiCheckboxIntermediate} /></label>
+            <input
+              value={this.props.component.styles.padding || "auto"}
+              onChange={e => this.props.onChange({ padding: e.target.value })}
             />
           </div>
         </div>
