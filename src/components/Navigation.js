@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { observer } from "mobx-react"
 import { white, primary, black } from "../colors"
-import InternalLink from "../primitives/InternalLink"
+import InternalLink from "../principals/InternalLink"
 
 import Icon from "@mdi/react"
 import {

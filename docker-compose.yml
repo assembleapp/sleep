@@ -14,13 +14,10 @@ services:
     environment:
       NODE_ENV: development
       REACT_APP_URL_API: $URL_API
-      REACT_APP_CONTACT_LINK: $CONTACT_LINK
-
       REACT_APP_MINIO_HOST: $MINIO_HOST
       REACT_APP_MINIO_PORT: $MINIO_PORT
       REACT_APP_MINIO_ACCESS_KEY: $MINIO_ACCESS_KEY
       REACT_APP_MINIO_SECRET_KEY: $MINIO_SECRET_KEY
-
       CHOKIDAR_USEPOLLING: 'true'
     volumes:
       - .:/usr/src

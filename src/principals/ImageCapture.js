@@ -5,7 +5,7 @@ import { observable, action, autorun } from "mobx"
 
 import DropZone from "react-dropzone"
 
-import Button from "../primitives/Button"
+import Button from "../principals/Button"
 
 import { darkgrey } from "../colors"
 import { Icon } from "@mdi/react"

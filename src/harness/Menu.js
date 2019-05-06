@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "../primitives/Button"
+import Button from "../principals/Button"
 import { observer, Observer } from "mobx-react"
 import { Icon } from "@mdi/react"
 import { mdiMenu, mdiClose, mdiWeb } from "@mdi/js"
 import { Box, Block, Backdrop, Sidebar, Portal } from "reakit";
 import { grey, darkgrey, white, red } from "../colors"
-import Selection from "../primitives/Selection"
+import Selection from "../principals/Selection"
 import field from "../util/field"
 
 const Menu = observer(({ assembly, children }) => (

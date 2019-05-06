@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { observer } from "mobx-react"
 import field from "../util/field"
-import Button from "../primitives/Button"
+import Button from "../principals/Button"
 
 const Login = observer(({assembly}) => (
   <Layout>

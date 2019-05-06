@@ -9,12 +9,12 @@ import Network from "./Network"
 import logo from "./logo.png"
 import { white, beige, lightgrey, darkgrey } from "./colors"
 
-import ErrorBoundary from "./primitives/ErrorBoundary"
-import InternalLink from "./primitives/InternalLink"
+import ErrorBoundary from "./principals/ErrorBoundary"
+import InternalLink from "./principals/InternalLink"
 
 import Flash from "./components/Flash"
 import Home from "./components/Home"
-import Menu from "./components/Menu"
+import Menu from "./harness/Menu"
 import Navigation from "./components/Navigation"
 import english from "./languages/en"
 

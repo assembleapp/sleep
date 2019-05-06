@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components"
 import { observer } from "mobx-react"
-import Button from "../primitives/Button"
-import Component from "../primitives/Component"
+import Button from "../principals/Button"
+import Component from "../principals/Component"
 
 const Home = observer(({ assembly }) => (
   <Layout>
