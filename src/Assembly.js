@@ -6,7 +6,6 @@ import { observer, Observer } from "mobx-react"
 
 import Account from "./Account"
 import Network from "./Network"
-import logo from "./logo.png"
 import { white, beige, lightgrey, darkgrey } from "./colors"
 
 import ErrorBoundary from "./principals/ErrorBoundary"
@@ -112,7 +111,6 @@ class Assembly extends React.Component {
     <Layout>
       <AuthBar>
         <InternalLink to={Home} assembly={this} >
-          <Image src={logo} width="1.5rem" height="1.5rem"/>
           <Title>{this.translate("titles.default")}</Title>
         </InternalLink>
 
