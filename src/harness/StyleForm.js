@@ -99,23 +99,7 @@ class StyleForm extends React.Component {
         </div>
 
         <div>
-          <h3>Size and Spacing</h3>
-
-          <div>
-            <label>Width</label>
-            <input
-              value={this.props.component.styles.width || "auto"}
-              onChange={e => this.props.onChange({ width: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label>Height</label>
-            <input
-              value={this.props.component.styles.height || "auto"}
-              onChange={e => this.props.onChange({ height: e.target.value })}
-            />
-          </div>
+          <h3>Spacing</h3>
 
           <div>
             <label>Padding <Icon size={1} path={mdiCheckboxIntermediate} /></label>

@@ -27,12 +27,17 @@ class Assembly extends React.Component {
   @observable currentPage = null
   @observable activeComponent = null
 
+  // Refs
+  layout = React.createRef()
+
   // We do not want the network to change throughout the application's lifecycle
   // so we do not make it observable.
   network = null
 
   constructor(props) {
     super(props)
+    if(!props.uuid)
+      throw("Error: No `uuid` has been provided to the Assembly.")
 
     this.network = new Network(process.env.REACT_APP_URL_API)
     this.route()
@@ -108,7 +113,7 @@ class Assembly extends React.Component {
   }
 
   render = () => (
-    <Layout>
+    <Layout innerRef={this.layout}>
       <AuthBar>
         <InternalLink to={Home} assembly={this} >
           <Title>{this.translate("titles.default")}</Title>
@@ -152,7 +157,10 @@ class Assembly extends React.Component {
           {() =>
             this.currentPage
             ? <ErrorBoundary assembly={this}>
-                { React.createElement(this.currentPage, { assembly: this }) }
+                { React.createElement(this.currentPage, {
+                  assembly: this,
+                  container: this.layout.current,
+                }) }
               </ErrorBoundary>
             : null
           }

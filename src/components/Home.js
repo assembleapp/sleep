@@ -4,16 +4,28 @@ import { observer } from "mobx-react"
 import Button from "../principals/Button"
 import Component from "../principals/Component"
 
-const Home = observer(({ assembly }) => (
-  <Layout>
-    <Component
-      uuid="11ec9f80-ee6d-44a9-a3c8-69e4bb8baabf"
-      assembly={assembly}
+@observer
+class Home extends React.Component {
+  layout = React.createRef()
+  layoutInner = React.createRef()
+
+  render = () => (
+    <Layout
+      ref={this.layout}
+      innerRef={this.layoutInner}
     >
-      Hello!
-    </Component>
-  </Layout>
-))
+      <Component
+        uuid="1902593e-1dd8-40f7-ace6-44ad8eeae6ed"
+        assembly={this.props.assembly}
+        container={this.layout}
+      >
+        This week:
+        <br/>
+        Relaxation techniques
+      </Component>
+    </Layout>
+  )
+}
 
 const Layout = styled.div`
   display: grid;
